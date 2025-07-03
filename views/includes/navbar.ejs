@@ -1,0 +1,46 @@
+ <!-- Navbar -->
+   <nav class="bg-rose-400 shadow-lg px-6 py-3 ">
+  <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+          
+  <a href="/">  <div class="flex space-x-5 text-white font-bold text-lg nav-l"><i class="fa-solid fa-house-user mt-1 mr-1"></i>EasyLiv</div></a>
+   
+    <div class="flex space-x-7 text-gray-800 font-semibold">
+      <a href="/" class=" transition-colors duration-300 text-white">Home</a>
+      <a href="/listings" class=" transition-colors 
+      duration-300 text-white">All Listings</a>
+      <a href="/listings/new" class="hover:text- transition-colors duration-300 text-white">EasyLiv Your Home</a>
+      <%if(currUser){%>
+      <a href="/user/<%=currUser.email%>" class="hover:text- transition-colors duration-300 text-white">My Listings</a>
+      <% } %>
+    </div>
+
+   
+     <div class="flex space-x-6">
+     <%if(!currUser){%>
+      <a href="/login" class="px-5 py-2 bg-white border-1 border-white rounded-full text-black font-semibold shadow-md hover:bg-rose-100 transition duration-300">Log In</a>
+      <a href="/signup" class="px-5 py-2 bg-white border-1 border-white rounded-full text-black font-semibold shadow-md hover:bg-rose-100 transition duration-300">Sign Up</a>
+      <% } %>
+
+      <% if(currUser){ %>
+        <span class="px-3 py-3 bg-white text-rose-600 rounded-full text-sm font-medium">
+          <p><%= currUser.username%></p>
+        </span>
+        
+      <a href="/logout" class="px-5 py-2 bg-white border-1 border-white rounded-full text-black font-semibold shadow-md hover:bg-rose-100 transition duration-300">Log Out</a>
+      <% } %>
+
+    </div>     
+  </div>
+</nav>
+
+    
+
+
+
+
+
+
+
+ 
+
+

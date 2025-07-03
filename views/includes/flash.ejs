@@ -1,0 +1,26 @@
+<%if(success && success.length){%>
+  <div class="bg-zinc-100 text-stone-400 px-4 py-3 rounded-md shadow-md max-w-lg mx-auto mt-4 flex items-center justify-between">
+    <div>
+      <p class="font-semibold">
+        <%=success%>
+      </p>
+    </div>
+    <button class="text-stone-500 hover:text-rose-200 text-xl leading-none ml-4"
+      onclick="this.parentElement.style.display='none';">
+      &times;
+    </button>
+  </div>
+  <%}%>
+  <%if(error && error.length){%>
+    <div class="bg-red-400 text-white px-4 py-3 rounded-md shadow-md max-w-lg mx-auto mt-4 flex items-center justify-between">
+      <div>
+        <p class="font-semibold">
+          <%=error%>
+        </p>
+      </div>
+      <button class="text-stone-500 hover:text-rose-200 text-xl leading-none ml-4"
+        onclick="this.parentElement.style.display='none';">
+        &times;
+      </button>
+    </div>
+    <%}%>

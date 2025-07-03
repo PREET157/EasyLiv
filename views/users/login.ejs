@@ -1,0 +1,47 @@
+<%layout("/layouts/boilerplate.ejs")%>
+  <body >
+          
+      <div class="min-h-[50%] flex items-center justify-center mt-10 ml-10 mb-20" style=" font-family: 'Montserrat', sans-serif;">
+        <div class="w-full max-w-md bg-white p-10 rounded-xl shadow-2xl">
+          <h2 class="text-2xl  text-gray-900 mb-6  text-bold font-semibold  mb-8 ">Login to your account</h2>
+    
+          <form action="/login" method="post" class="space-y-6" autocomplete="off">
+            <!-- username Field -->
+            <div>
+              <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">Username</label>
+              <div class="flex items-center border rounded-full px-4 bg-gray-100  mb-8">
+                <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                <input type="text" name="username"  autocomplete="off" placeholder="Your Username" required class="w-full bg-gray-100 border-none focus:outline-none py-2 text-sm" />
+              </div>
+            </div>
+    
+            <!-- Password Field -->
+            <div>
+              <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
+              <div class="flex items-center border rounded-full px-4 bg-gray-100  mb-8">
+                <i class="fas fa-key text-gray-400 mr-2"></i>
+                <input type="password" name="password"   autocomplete="new-password" placeholder="Your password" required class="w-full bg-gray-100 border-none focus:outline-none py-2 text-sm" />
+              </div>
+            </div>
+    
+            <!-- Buttons -->
+            <div class="flex justify-between space-x-4">
+              <a href="/signup" class="flex-1 border border-red-500 text-red-500 py-2 rounded-full text-center font-semibold hover:bg-red-50 transition duration-200">Register</a>
+              <button type="submit" class="flex-1 bg-red-500 text-white py-2 rounded-full font-semibold shadow hover:bg-red-600 transition duration-200">Login</button>
+            </div>
+    
+            <!-- Options -->
+            <div class="flex items-center justify-between text-sm mt-4">
+              <label class="inline-flex items-center">
+                <input type="checkbox" class="form-checkbox text-red-500 mr-2">
+                Remember me
+              </label>
+              <a href="#" class="text-gray-400 hover:text-gray-600">Forgot password?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+  </body>

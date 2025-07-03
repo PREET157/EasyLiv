@@ -1,0 +1,25 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<body >
+
+ <h1 class=" pl-20  text-3xl font-semibold my-5 text-rose-600">All Listings</h1>
+    <div class="container mx-auto  ">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ms-20">
+        <% for(let listing of listings) { %>
+              <a href="/listings/<%=listing._id%>">
+               
+        <div class="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden mt-10">
+            <img class="w-full h-40 object-cover" src="data:<%= listing.image.contentType %>;base64,<%= listing.image.data.toString('base64') %>" alt="Card Image">
+            <div class="p-5">
+                <h3 class="text-3sm font-semibold text-gray-800"><%= listing.title %></h3>
+                      <h5 class="text-2sm font-semibold text-gray-500"><%= listing.location %></h5>
+                <p class="text-gray-600 mt-2">&#8377;<%= listing.price.toLocaleString("en-IN") %> /month</p>
+                <button class="mt-4 w-full bg-rose-400 text-white font-semibold py-2 px-4 rounded-lg hover:bg-rose-500 transition duration-300">
+                    Learn More
+                </button>
+            </div>
+        </div>
+      </a>
+        <% } %>
+    </div>
+</div>
+</body>

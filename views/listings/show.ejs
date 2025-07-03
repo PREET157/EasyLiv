@@ -1,0 +1,163 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<body>
+   <div class="max-w-80% bg-white rounded-lg overflow-hidden shadow-lg mt-20 ml-20  flex " >
+    <!-- Image Section -->
+  
+    <img alt="cover image" class="w-[50%] h-60 object-cover rounded-lg" src="data:<%= listing.image.contentType %>;base64,<%= listing.image.data.toString('base64') %>" />
+
+    <!-- Content Section -->
+    <div class="p-4">
+
+        <div class="bg-white border border-gray-200 shadow-sm rounded-xl px-6 py-2 mt-3 mb-3 inline-flex items-center space-x-2 text-sm font-medium text-gray-800">
+          <span class="text-gray-500" >Owned by</span>
+         
+          <span class="font-semibold text-red-500"><%=listing.owner.username%></span>
+        </div>
+        <a href="/user/<%=listing.owner.email%>" class="bg-white border border-gray-200 shadow-sm rounded-xl space-x-2 text-sm font-medium text-gray-700 px-6 py-2">View All</a>
+        <p class="text-gray-700 text-sm mt-1"><%=listing.description%></p>
+        
+        <div class="mt-3">
+            <span class="text-gray-900 font-bold text-lg">&#8377;<%=listing.price.toLocaleString("en-IN")%></span>
+            <span class="text-gray-500 text-sm">/month</span>
+        </div>
+        <p class="text-gray-500 mt-2"> <%=listing.location%></p>
+        <p class="text-gray-500 mt-2">📍 <%=listing.country%></p>
+        <%if(currUser && currUser._id.equals(listing.owner._id)){%>  
+        <button class="mt-4  bg-rose-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-rose-600 transition duration-300">
+          <a href="/listings/<%=listing._id%>/edit">Edit</a>
+        </button>
+        <button>
+          <form method="post" action="/listings/<%=listing._id%>?_method=DELETE"> 
+            <button class="mt-4  bg-rose-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-rose-600 transition duration-300">Delete</button>
+            </form>
+        </button>
+        <%}%>
+    </div>
+</div>
+
+<% if (currUser) { %>
+  <div class="flex flex-wrap items-start justify-center gap-20 min-h-screen mt-10 pt-10 ">
+    
+    <!-- Leave a Review -->
+    <form action="/listings/<%= listing._id %>/reviews" method="POST" class="flex-1 min-w-[300px] max-w-md flex items-center justify-center">
+      <div class="w-full bg-gray-100 p-6 space-y-9  rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-center text-rose-400">Leave a Review</h2>
+  
+        <div>
+          <label for="rating" class="block text-sm font-medium text-rose-400 mb-1">Rating</label>
+          <fieldset class="starability-slot">
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+          
+            <input type="radio" id="rate5" name="review[rating]" value="1" />
+            <label for="rate5" title="Amazing">★</label>
+          
+            <input type="radio" id="rate4" name="review[rating]" value="2" />
+            <label for="rate4" title="Very good">★</label>
+          
+            <input type="radio" id="rate3" name="review[rating]" value="3" />
+            <label for="rate3" title="Average">★</label>
+          
+            <input type="radio" id="rate2" name="review[rating]" value="4" />
+            <label for="rate2" title="Not good">★</label>
+          
+            <input type="radio" id="rate1" name="review[rating]" value="5" />
+            <label for="rate1" title="Terrible">★</label>
+          </fieldset>
+          
+        </div> 
+  
+        <div>
+          <label for="comment" class="block text-sm font-medium text-rose-400 mb-1">Comments</label>
+          <textarea name="review[comment]" id="comment" rows="4" class="w-full px-3 py-2 border border-rose-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+        </div>
+  
+        <button type="submit" class="w-full bg-rose-400 text-white py-2 px-4 rounded-md hover:bg-rose-600 transition">Submit</button>
+      </div>
+    </form>
+  
+    <!-- Contact Form -->
+    <div class="flex-1 min-w-[300px] max-w-md flex items-center justify-center">
+      <div class="bg-white rounded-2xl shadow-lg p-8 w-full ">
+        <h2 class="text-3xl font-bold text-rose-400 mb-6 text-center">Contact Owner</h2>
+  
+        <form class="space-y-4" id="query">
+          <!-- First and Last Name -->
+          <div class="flex space-x-4">
+            <div class="w-1/2">
+              <input type="text" value="<%=listing.owner.email%>" hidden name="ownerEmail">
+              <label class="block text-rose-400 font-semibold mb-1">First Name</label>
+              <input type="text" placeholder="First Name" class="w-full border border-rose-400 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400" name="fName">
+            </div>
+            <div class="w-1/2">
+              <label class="block text-rose-400 font-semibold mb-1">Last Name</label>
+              <input type="text" placeholder="Last Name" class="w-full border border-rose-400 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400" name="lName">
+            </div>
+          </div>
+  
+          <!-- Email -->
+          <div>
+            <label class="block text-rose-400 font-semibold mb-1">Email</label>
+            <input type="email" placeholder="you@example.com" class="w-full border border-rose-400 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400" name="email">
+          </div>
+  
+          <!-- Phone Number -->
+          <div>
+            <label class="block text-rose-400 font-semibold mb-1">Phone No</label>
+            <input type="tel" placeholder="123-456-7890" class="w-full border border-rose-400 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400" name="phone">
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button 
+            type="submit" class="bg-rose-400 text-white font-semibold px-6 py-2 rounded-lg hover:bg-rose-500 transition">Reserve</button>
+
+        
+          </div>
+        </form>
+      </div>
+    </div>
+  
+  </div>
+  <% } %>
+
+<h4 class="text-3xl pt-0 font-semibold text-center text-rose-400 mb-10  mt-5">All Reviews</h4>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ml-10 mb-10 p-2">
+    <% for (review of listing.reviews) { %>
+      <div class="bg-white shadow-lg rounded-2xl pt-5 border border-gray-200 mx-5">
+        <p class="text-2sm font-semibold text-gray-800 pl-3"><%= review.comment %></p>
+        <p class="text-right pr-5 pt-5">~<%=review.author.username%></p>
+        <p class="text-yellow-500 text-xl mt-2 text-right pr-5">
+          <%= "⭐".repeat(review.rating) %>
+        </p>
+       
+        <form  method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+          <button class=" mb-3 ml-5 text-sm bg-black text-white font-semibold py-2 px-3 rounded-lg hover:bg-slate-800 transition duration-300">Delete</button>
+        </form>
+
+      
+      </div>
+    <% } %>
+  </div>
+</ul>
+
+<script>
+   document.getElementById('query').addEventListener('submit', async function (e) {
+    e.preventDefault(); // ⛔ prevent page reload / redirect
+    
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    this.reset();
+    
+    // Send the data using fetch
+    const res = await fetch('/mail', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (res.ok) {
+      console.log('Form submitted successfully without redirect');
+    }
+  });
+</script>
+</body>

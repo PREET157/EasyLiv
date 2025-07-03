@@ -1,0 +1,47 @@
+<%layout("/layouts/boilerplate.ejs")%>
+<body>
+ 
+  <div class="w-full  p-6  ">
+    <h2 class="text-2xl font-semibold mb-4 text-center text-rose-600">Create a New Listing</h2>
+    <form class="space-y-5 m-auto max-w-[70%]"   method="post" action="/listings"  enctype="multipart/form-data">
+        <div>
+            <label class="block text-gray-700 font-medium">Title</label>
+            <input name="listings[title]" type="text" placeholder="Add a catchy title" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" required>
+        </div>
+        <div>
+            <label class="block text-gray-700 font-medium">Description</label>
+            <textarea name="listings[description]" placeholder="" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" required></textarea>
+        </div>
+        <div>
+            <label class="block text-gray-700 font-medium">Upload Image </label>
+            <input name="image"  type="file" placeholder="Enter image URL/Link" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" required>
+        </div>
+        <!-- <div>
+            <label class="block text-gray-700 font-medium">Image Link</label>
+            <input name="listings[image]"  type="text" placeholder="Enter image URL/Link" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" required>
+            
+        </div> -->
+        <div class="grid grid-cols-2 gap-5">
+            <div>
+                <label class="block text-gray-700 font-medium">Price</label>
+                <input  name="listings[price]" type="" placeholder="price" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" required>
+            </div>
+            <div>
+                <label class="block text-gray-700 font-medium">Country</label>
+                <input  name="listings[country]" type="text" placeholder="India" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" required>
+            </div>
+        </div>
+        <div>
+            <label class="block text-gray-700 font-medium">Location</label>
+            <input  name="listings[location]"  type="text" placeholder="Jaipur, Rajasthan" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400" required>
+        </div>
+        <button type="submit" class="w-full bg-black text-white font-semibold py-3 rounded-md hover:bg-gray-800 transition duration-300">Add</button>
+    </form>
+    <div class="flex justify-center mt-6 space-x-6 text-xl">
+        <a href="#" class="text-gray-700 hover:text-black"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-gray-700 hover:text-black"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-gray-700 hover:text-black"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+
+</body>
