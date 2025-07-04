@@ -1,0 +1,1 @@
+EasyLiv serves as an essential platform for connecting tenants and landlords, offering a seamless and efficient way to manage rental properties. The website's key features, such as property listings,user profiles, real-time updates, simplify the renting process for both parties.
